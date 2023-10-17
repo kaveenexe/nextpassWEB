@@ -17,5 +17,22 @@ const registerUser = (req, res) => {
     });
 };
 
-module.exports = { registerUser };
+//get user
+const getUserByEmail = (req, res) => {
+  const { email } = req.params;
+
+  userModel.getUserByEmail(email)
+    .then((userData) => {
+      if (userData) {
+        return res.status(200).json(userData);
+      } else {
+        return res.status(404).send('User not found.');
+      }
+    })
+    .catch((error) => {
+      return res.status(500).send('Error retrieving user: ' + error);
+    });
+};
+
+module.exports = { registerUser , getUserByEmail};
 
