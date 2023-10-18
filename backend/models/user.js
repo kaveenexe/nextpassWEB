@@ -1,6 +1,7 @@
 const admin = require('firebase-admin');
 const db = admin.firestore();
 
+//create new user
 const createUser = (name, email, password, contactNumber) => {
   return admin.auth().createUser({
     email: email,
@@ -12,16 +13,30 @@ const createUser = (name, email, password, contactNumber) => {
       contactNumber: contactNumber
     });
   });
+}
+
+//save qr code
+const saveQRCode = (userId, qrCode) => {
+  return db.collection('users').doc(userId).update({
+    qrCode: qrCode
+  });
 };
 
-//get user
+//get userdata
 const getUserByEmail = (email) => {
-  return admin.auth().getUserByEmail(email)
+  return admin
+    .auth()
+    .getUserByEmail(email)
     .then((userRecord) => {
-      return db.collection('users').doc(userRecord.uid).get()
+      return db
+        .collection('users')
+        .doc(userRecord.uid)
+        .get()
         .then((doc) => {
           if (doc.exists) {
-            return doc.data();
+            const userData = doc.data();
+            const qrCode = userData.qrCode; // Retrieve the QR code from user data
+            return { userData, qrCode };
           } else {
             return null;
           }
@@ -37,4 +52,4 @@ const getUserByEmail = (email) => {
     });
 };
 
-module.exports = { createUser , getUserByEmail};
+module.exports = { createUser , saveQRCode, getUserByEmail};
