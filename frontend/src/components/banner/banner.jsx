@@ -13,6 +13,7 @@ function HomeBanner() {
           alt="First slide"
         />
         <Carousel.Caption>
+          <h2>Welcome to NextPass</h2>
           <h3>Explore, Connect, Travel Together!</h3>
           <p>For Everyone, Anywhere Your Journey, Our Destination</p>
         </Carousel.Caption>
