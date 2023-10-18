@@ -50,7 +50,7 @@ let stringdata = JSON.stringify(data);
 generateQRCode(stringdata)
     .then(code => {
         // Printing the code
-        // console.log(code);  //want
+        console.log(code);  //want
     })
     .catch(error => {
         console.error(error);
