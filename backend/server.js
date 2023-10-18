@@ -25,43 +25,37 @@ app.use(bodyParser.json());
 // });
 
 // Add more routes here
-// Require the package
-const QRCode = require('qrcode')
 
-// Creating the data
-let data = {
-	name:"Passenger Name",
-	age:27,
-	startpoint:"Colombo",
-	id:"aisuoiqu3234738jdhf100223"
-}
-
-// Converting the data into String format
-let stringdata = JSON.stringify(data)
-
-// Print the QR code to terminal
-QRCode.toString(stringdata,{type:'terminal'},
-					function (err, QRcode) {
-
-	if(err) return console.log("error occurred")
-
-	// Printing the generated code
-	console.log(QRcode)
-})
-
-// Converting the data into base64 
-QRCode.toDataURL(stringdata, function (err, code) {
-	if(err) return console.log("error occurred")
-
-	// Printing the code
-	console.log(code)
-})
-
+// Import the QR code generator module
+const { generateQRCode } = require("./controllers/qrcodeGenerator");
 
 const userRoutes = require('./routes/userRoutes');
 
 // Other app configurations and server setup
-app.use('/api/user', userRoutes)
+app.use('/api/user', userRoutes);
+
+// Creating the data
+let data = {
+    name: "Passenger Name",
+    age: 27,
+    startpoint: "Colombo",
+    endpoint: "Kandy",
+    id: "aisuoiqu3234738jdhf100223"
+};
+
+// Converting the data into String format
+let stringdata = JSON.stringify(data);
+
+// Print the QR code to the console
+generateQRCode(stringdata)
+    .then(code => {
+        // Printing the code
+        // console.log(code);  //want
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
 
 // Start the server
 const PORT = process.env.PORT || 5000;
