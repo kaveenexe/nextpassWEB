@@ -1,32 +1,21 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const { db } = require("./config/firebaseConfig");
 require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
+
+const busRoutes = require("./routes/busRoutes");
+const inspectorRoutes = require("./routes/inspectorRoutes");
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use("/auth", authRoutes);
 
-// app.get("/users", async (req, res) => {
-//   try {
-//     const usersQuerySnapshot = await db.collection("users").get();
-//     const users = [];
-//     usersQuerySnapshot.forEach((doc) => {
-//       users.push({
-//         id: doc.id,
-//         data: doc.data(),
-//       });
-//     });
-//     res.json(users);
-//   } catch (error) {
-//     console.log("Error getting users: ", error);
-//     res.status(500).send(error);
-//   }
-// });
+// Bus Routes
+app.use("/buses", busRoutes);
 
-// Add more routes here
+// Inspector Routes
+app.use("/inspectors", inspectorRoutes);
 
 // Import the QR code generator module
 const { generateQRCode } = require("./controllers/qrcodeGenerator");
