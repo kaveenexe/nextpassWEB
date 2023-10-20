@@ -1,34 +1,23 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const {db} = require( "./firebaseConfig" );
+const { db } = require("./firebaseConfig");
 require("dotenv").config();
+
+const busRoutes = require("./routes/busRoutes");
+const inspectorRoutes = require("./routes/inspectorRoutes");
 
 const app = express();
 
 app.use(bodyParser.json());
 
-app.get("/users", async (req, res) => {
-  try {
-    const usersQuerySnapshot = await db.collection("users").get();
-    const users = [];
-    usersQuerySnapshot.forEach((doc) => {
-      users.push({
-        id: doc.id,
-        data: doc.data(),
-      });
-    });
-    res.json(users);
-  } catch (error) {
-    console.log("Error getting users: ", error);
-    res.status(500).send(error);
-  }
-});
+// Bus Routes
+app.use("/buses", busRoutes);
 
-// Add more routes here
+// Inspector Routes
+app.use("/inspectors", inspectorRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log( `Server is running on port ${ PORT }` );
-  console.log("Connected to Firebase");
+  console.log(`Server is running on port ${PORT}`);
 });
