@@ -1,11 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const {db} = require( "./firebaseConfig" );
+const { db } = require("./config/firebaseConfig");
 require("dotenv").config();
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use("/auth", authRoutes);
 
 // app.get("/users", async (req, res) => {
 //   try {
@@ -29,18 +31,18 @@ app.use(bodyParser.json());
 // Import the QR code generator module
 const { generateQRCode } = require("./controllers/qrcodeGenerator");
 
-const userRoutes = require('./routes/userRoutes');
+const userRoutes = require("./routes/userRoutes");
 
 // Other app configurations and server setup
-app.use('/api/user', userRoutes);
+app.use("/api/user", userRoutes);
 
 // Creating the data
 let data = {
-    name: "Passenger Name",
-    age: 27,
-    startpoint: "Colombo",
-    endpoint: "Kandy",
-    id: "aisuoiqu3234738jdhf100223"
+  name: "Passenger Name",
+  age: 27,
+  startpoint: "Colombo",
+  endpoint: "Kandy",
+  id: "aisuoiqu3234738jdhf100223",
 };
 
 // Converting the data into String format
@@ -48,18 +50,17 @@ let stringdata = JSON.stringify(data);
 
 // Print the QR code to the console
 generateQRCode(stringdata)
-    .then(code => {
-        // Printing the code
-        console.log(code);  //want
-    })
-    .catch(error => {
-        console.error(error);
-    });
-
+  .then((code) => {
+    // Printing the code
+    console.log(code); //want
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log( `Server is running on port ${ PORT }` );
+  console.log(`Server is running on port ${PORT}`);
   console.log("Connected to Firebase");
 });
