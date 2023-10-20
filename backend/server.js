@@ -1,66 +1,35 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const { db } = require("./config/firebaseConfig");
-require("dotenv").config();
-const authRoutes = require("./routes/authRoutes");
+const express = require('express');
+const bodyParser = require('body-parser');
+const { db } = require('./config/firebaseConfig');
+require('dotenv').config();
+const authRoutes = require('./routes/authRoutes');
+const verifyToken = require('./middleware/verifyToken');
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use("/auth", authRoutes);
 
-// app.get("/users", async (req, res) => {
-//   try {
-//     const usersQuerySnapshot = await db.collection("users").get();
-//     const users = [];
-//     usersQuerySnapshot.forEach((doc) => {
-//       users.push({
-//         id: doc.id,
-//         data: doc.data(),
-//       });
-//     });
-//     res.json(users);
-//   } catch (error) {
-//     console.log("Error getting users: ", error);
-//     res.status(500).send(error);
-//   }
-// });
+// Use your authRoutes for authentication endpoints
+app.use('/auth', authRoutes);
 
-// Add more routes here
+// Example of a protected route using the verifyToken middleware
+app.get('/api/user/protectedRoute', verifyToken, (req, res) => {
+  // Access the user's information from req.user
+  const { uid, email } = req.user;
 
-// Import the QR code generator module
-const { generateQRCode } = require("./controllers/qrcodeGenerator");
-
-const userRoutes = require("./routes/userRoutes");
-
-// Other app configurations and server setup
-app.use("/api/user", userRoutes);
-
-// Creating the data
-let data = {
-  name: "Passenger Name",
-  age: 27,
-  startpoint: "Colombo",
-  endpoint: "Kandy",
-  id: "aisuoiqu3234738jdhf100223",
-};
-
-// Converting the data into String format
-let stringdata = JSON.stringify(data);
-
-// Print the QR code to the console
-generateQRCode(stringdata)
-  .then((code) => {
-    // Printing the code
-    console.log(code); //want
-  })
-  .catch((error) => {
-    console.error(error);
+  // Example: Return the user's information as a JSON response
+  res.status(200).json({ 
+    message: 'You are authorized to access this protected route',
+    user: { 
+      userId: uid, 
+      userEmail: email 
+    } 
   });
+});
 
-// Start the server
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  console.log("Connected to Firebase");
+  console.log('Connected to Firebase');
 });

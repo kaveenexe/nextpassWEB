@@ -1,29 +1,44 @@
-const admin = require('../config/firebaseConfig');
+const { admin, db } = require('../config/firebaseConfig');
+const QRCode = require('qrcode');
 
 const authController = {};
-//authentications
-authController.verifyToken = async (req, res, next) => {
-    const idToken = req.headers.authorization;
-  
-    try {
-      const decodedToken = await admin.auth().verifyIdToken(idToken);
-      req.user = decodedToken;
-      next();
-    } catch (error) {
-      res.status(403).json({ error: 'Unauthorized', message: error.message });
-    }
-  };
-  
 
 authController.register = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, startpoint, endpoint, balance } = req.body;
 
   try {
     const userRecord = await admin.auth().createUser({
       email: email,
       password: password,
+      startpoint: startpoint,
+      endpoint: endpoint,
+      balance: balance,
     });
-    res.status(200).json({ message: 'User registered successfully', data: userRecord.toJSON() });
+
+    const userData = {
+      email: email,
+      password: password,
+      startpoint: startpoint,
+      endpoint: endpoint,
+      balance: balance,
+      // Add other user data as needed
+    };
+
+    // Save user data to Firestore
+    await db.collection('users').doc(userRecord.uid).set(userData);
+
+    // Convert user data to a string
+    const stringData = JSON.stringify(userData);
+
+    // Generate QR code
+    QRCode.toDataURL(stringData, async (err, qrCode) => {
+      if (err) return res.status(500).json({ error: 'Error generating QR code', message: err.message });
+
+      // Save QR code to the user document
+      await db.collection('users').doc(userRecord.uid).update({ qrCode: qrCode });
+
+      res.status(200).json({ message: 'User registered successfully and QR code generated', data: userRecord.toJSON() });
+    });
   } catch (error) {
     res.status(500).json({ error: 'Error registering user', message: error.message });
   }
