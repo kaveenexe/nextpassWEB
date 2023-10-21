@@ -30,7 +30,7 @@ function TravelHistory() {
         );
       }
       setBusData(busData.filter((bus) => bus.id !== busId));
-      alert("Are you sure you want to delete this bus schedule?");
+      alert("Are you sure you want to delete record?");
     } catch (error) {
       console.error("Error deleting bus schedule: ", error);
     }
