@@ -1,0 +1,60 @@
+.form-container{
+  background-color: #e8eaef;
+  border-radius: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-right: 30px;
+  width: 900px;
+}
+
+.cancelbtn {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 8px 18px;
+  margin: 10px 6px;
+  font-size: 17px;
+  background-color: rgb(84, 81, 81);
+  color: var(--i);
+  outline: none;
+  border: 3px solid var(--i);
+  border-radius: 4px;
+  cursor: pointer;
+  pointer-events: all;
+  transition: .3s;
+  font-weight: 600;
+}
+
+.cancelbtn:hover {
+  background-color: var(--i);
+  color: #000000;
+}
+
+.assignbtn {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 8px 18px;
+    margin: 10px 6px;
+    font-size: 17px;
+    background-color: rgb(12, 92, 167);
+    color: var(--i);
+    outline: none;
+    border: 3px solid var(--i);
+    border-radius: 4px;
+    cursor: pointer;
+    pointer-events: all;
+    transition: .3s;
+    font-weight: 600;
+}
+
+.assignbtn:hover {
+  background-color: var(--i);
+  color: #000000;
+}
+
+.button-group {
+  margin-left: 315px;
+}
+
+.settings-container{
+  max-width: 1200px;
+}

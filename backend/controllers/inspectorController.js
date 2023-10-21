@@ -1,4 +1,4 @@
-const { db } = require("../firebaseConfig");
+const { db } = require("../config/firebaseConfig");
 
 const addInspector = async (req, res) => {
   try {
@@ -24,7 +24,7 @@ const addInspector = async (req, res) => {
       return res.status(400).json({ error: "Invalid email format." });
     }
 
-    const phonePattern = /^\+?[1-9]\d{1,14}$/; 
+    const phonePattern = /^\+?[1-9]\d{1,14}$/;
     if (!phonePattern.test(phone)) {
       return res.status(400).json({ error: "Invalid phone number format." });
     }
