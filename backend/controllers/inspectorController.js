@@ -29,6 +29,13 @@ const addInspector = async (req, res) => {
       return res.status(400).json({ error: "Invalid phone number format." });
     }
 
+    const noOfShiftsPattern = /^[1-3]$/;
+    if (!noOfShiftsPattern.test(noOfShifts)) {
+      return res
+        .status(400)
+        .json({ error: "Number of shifts must be 1, 2, or 3" });
+    }
+
     const newInspector = {
       name,
       email,

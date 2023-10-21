@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Header from "../../components/Admin/Header";
 import * as formik from "formik";
 import * as yup from "yup";
@@ -50,10 +49,10 @@ const Settings = () => {
         validationSchema={schema}
         onSubmit={console.log}
         initialValues={{
-          firstName: "",
-          lastName: "",
-          Email: "",
-          phoneNumber: "",
+          firstName: "Maleesha",
+          lastName: "Shashindi",
+          Email: "maleeshas.2000@gmail.com",
+          phoneNumber: "0703750933",
           confirm_password: "",
         }}
       >
