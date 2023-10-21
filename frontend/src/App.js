@@ -4,7 +4,7 @@ import Home from "./pages/Home/home";
 import Login from "./pages/Login/login";
 import Dashboard from "./components/Admin/Dashboard";
 import TravelHistory from "./pages/Admin/TravelHistory";
-import TransportManager from "./pages/Admin/TransportManager";
+import TransportManager from "./pages/Admin/TransportManager"; 
 import AssignBusses from "./pages/Admin/AssignBusses";
 import AssignInspectors from "./pages/Admin/AssignInspectors";
 import BusTimeTable from "./pages/Admin/BusTimeTable";

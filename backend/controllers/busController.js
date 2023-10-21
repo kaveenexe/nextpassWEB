@@ -6,6 +6,7 @@ const addBus = async (req, res) => {
       date,
       driver,
       busNumber,
+      noOfSeats,
       startLocation,
       arrivalLocation,
       startTime,
@@ -17,6 +18,7 @@ const addBus = async (req, res) => {
       !date ||
       !driver ||
       !busNumber ||
+      !noOfSeats ||
       !startLocation ||
       !arrivalLocation ||
       !startTime ||
@@ -24,7 +26,7 @@ const addBus = async (req, res) => {
     ) {
       return res
         .status(400)
-        .json({ error: "Please provide all required fields." });
+        .json({ error: "Please provide all the required fields" });
     }
 
     const potentialSchedules = await db
@@ -50,6 +52,7 @@ const addBus = async (req, res) => {
       date,
       driver,
       busNumber,
+      noOfSeats,
       startLocation,
       arrivalLocation,
       startTime,
