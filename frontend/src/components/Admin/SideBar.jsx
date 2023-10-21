@@ -47,16 +47,6 @@ const SideBar = () => {
       label: "Assign Inspectors",
     },
     {
-      key: "fare-rates",
-      icon: <BiStats className="fs-4" />,
-      label: "Fare Rates",
-    },
-    {
-      key: "reports",
-      icon: <HiOutlineDocumentReport className="fs-4" />,
-      label: "Reports",
-    },
-    {
       key: "settings",
       icon: <AiOutlineSetting className="fs-4" />,
       label: "Settings",
