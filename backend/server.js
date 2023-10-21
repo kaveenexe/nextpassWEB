@@ -1,11 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
-
 const busRoutes = require("./routes/busRoutes");
 const inspectorRoutes = require("./routes/inspectorRoutes");
 
+require("dotenv").config();
 const app = express();
 
 app.use(bodyParser.json());
