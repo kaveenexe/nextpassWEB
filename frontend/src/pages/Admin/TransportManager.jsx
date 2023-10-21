@@ -1,16 +1,10 @@
-import React from 'react'
+import React from "react";
 import FlexBetween from "../../components/Admin/FlexBetween";
 import StatBox from "../../components/Admin/StatBox";
-// import RevenueBox from "../../components/Admin/RevenueBox";
+// import RevenueChart from "../../components/Admin/RevenueChart";
 import Header from "../../components/Admin/Header";
-import { grey } from "@mui/material/colors";
 import { Box, Button } from "@mui/material";
-import {
-  DownloadOutlined,
-  ShoppingCart,
-  PeopleAlt,
-  Store,
-} from "@mui/icons-material";
+import { DownloadOutlined } from "@mui/icons-material";
 import { blue, blueGrey } from "@mui/material/colors";
 
 const TransportManager = () => {
@@ -52,11 +46,11 @@ const TransportManager = () => {
         {/* BOX 4 */}
         <StatBox title="Total Buses" value="198" />
       </Box>
-      {/* <Box mt="20px" display="flex" gridAutoRows="160px" gap="20px">
-        <RevenueBox />
+      {/* <Box mt="20px">
+        <RevenueChart />
       </Box> */}
     </div>
   );
-}
+};
 
-export default TransportManager
+export default TransportManager;

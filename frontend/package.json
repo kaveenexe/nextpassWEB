@@ -8,18 +8,17 @@
     "@iconscout/react-unicons": "^2.0.2",
     "@mui/icons-material": "^5.14.14",
     "@mui/material": "^5.14.14",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "antd": "^5.10.1",
     "axios": "^1.5.1",
     "bootstrap": "^5.3.2",
+    "chart.js": "^4.4.0",
     "formik": "^2.4.5",
     "hover-carousel": "^1.1.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.17.0",
@@ -52,6 +51,9 @@
     ]
   },
   "devDependencies": {
-    "jest": "^27.5.1"
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.1",
+    "jest": "^29.7.0"
   }
 }
