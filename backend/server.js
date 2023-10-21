@@ -2,12 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
 const busRoutes = require("./routes/busRoutes");
-const inspectorRoutes = require( "./routes/inspectorRoutes" );
-const cors = require( 'cors' );
+const inspectorRoutes = require("./routes/inspectorRoutes");
+const cors = require("cors");
 
 require("dotenv").config();
 const app = express();
-app.use(cors()); 
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use("/auth", authRoutes);
